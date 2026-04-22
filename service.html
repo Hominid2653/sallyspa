@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Service — Sally Spa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="index.css" />
+  <style>
+    /* ── Hero parallax container ── */
+    #service-hero {
+      position: relative;
+      min-height: 70vh;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    #hero-bg {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.08);
+      transition: transform 0.1s linear;
+    }
+    #hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(44,36,22,0.25) 0%,
+        rgba(44,36,22,0.55) 50%,
+        rgba(44,36,22,0.92) 100%
+      );
+    }
+
+    /* ── Benefit pill ── */
+    .benefit-pill {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 18px;
+      background: #FDFAF7;
+      border: 1px solid #E8DDD0;
+      border-radius: 14px;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .benefit-pill:hover {
+      border-color: #B49A6B;
+      transform: translateX(4px);
+    }
+    .benefit-pill::before {
+      content: '✦';
+      color: #B49A6B;
+      font-size: 9px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* ── Good-for tag ── */
+    .good-for-tag {
+      font-family: 'Jost', sans-serif;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(180,154,107,0.4);
+      color: #8B6F47;
+      background: transparent;
+      transition: all 0.3s;
+    }
+    .good-for-tag:hover {
+      background: #B49A6B;
+      border-color: #B49A6B;
+      color: #F7F3EE;
+    }
+
+    /* ── Related card hover ── */
+    .related-card {
+      background: #fff;
+      border: 1px solid #E8DDD0;
+      border-radius: 18px;
+      overflow: hidden;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .related-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(44,36,22,0.10);
+      border-color: #B49A6B;
+    }
+    .related-img {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+    .related-card:hover .related-img { transform: scale(1.05); }
+    .related-img-placeholder {
+      width: 100%;
+      aspect-ratio: 3 / 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+    }
+
+    /* ── Sticky booking bar ── */
+    #sticky-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 40;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(.22,.68,0,1.1);
+      background: rgba(44,36,22,0.97);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(180,154,107,0.2);
+    }
+    #sticky-bar.visible { transform: translateY(0); }
+
+    /* ── Page load animations ── */
+    .hero-fade { animation: fadeUp 0.9s cubic-bezier(.22,.68,0,1.2) both; }
+    .hero-fade-1 { animation-delay: 0.1s; }
+    .hero-fade-2 { animation-delay: 0.3s; }
+    .hero-fade-3 { animation-delay: 0.5s; }
+    .hero-fade-4 { animation-delay: 0.65s; }
+
+    /* ── Section divider ornament ── */
+    .ornament {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 0 0 32px;
+    }
+    .ornament::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, #E8DDD0, transparent);
+    }
+
+    /* ── Not found state ── */
+    #not-found { display: none; }
+  </style>
+</head>
+<body class="bg-[#F7F3EE] text-[#2C2416]">
+
+  <!-- ═══════════ NAV ═══════════ -->
+  <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-full border border-[#B49A6B] flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B49A6B" stroke-width="1.2">
+            <path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7z"/>
+            <circle cx="12" cy="9" r="2.5"/>
+          </svg>
+        </div>
+        <span class="font-['Cormorant_Garamond'] text-2xl tracking-widest text-[#2C2416] font-light">SALLY SPA</span>
+      </a>
+      <ul class="hidden md:flex items-center gap-10">
+        <li><a href="index.html#about"    class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] hover:text-[#B49A6B] transition-colors">About</a></li>
+        <li><a href="services.html"       class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#B49A6B]">Services</a></li>
+        <li><a href="index.html#packages" class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] hover:text-[#B49A6B] transition-colors">Packages</a></li>
+        <li><a href="index.html#contact"  class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] hover:text-[#B49A6B] transition-colors">Contact</a></li>
+      </ul>
+      <a href="index.html#booking" class="hidden md:block font-['Jost'] text-xs tracking-[0.2em] uppercase border border-[#B49A6B] text-[#B49A6B] px-6 py-2.5 hover:bg-[#B49A6B] hover:text-white transition-all duration-300">Book Now</a>
+      <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu" aria-expanded="false">
+        <span class="w-6 h-px bg-[#2C2416] block"></span>
+        <span class="w-4 h-px bg-[#2C2416] block"></span>
+        <span class="w-6 h-px bg-[#2C2416] block"></span>
+      </button>
+    </div>
+    <div id="mobile-menu" class="hidden flex-col md:hidden bg-[#F7F3EE] border-t border-[#E8DDD0] px-6 py-6 gap-5">
+      <a href="index.html#about"    class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] py-2 border-b border-[#B49A6B]/10">About</a>
+      <a href="services.html"       class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#B49A6B]   py-2 border-b border-[#B49A6B]/10">Services</a>
+      <a href="index.html#packages" class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] py-2 border-b border-[#B49A6B]/10">Packages</a>
+      <a href="index.html#contact"  class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] py-2 border-b border-[#B49A6B]/10">Contact</a>
+      <a href="index.html#booking"  class="font-['Jost'] text-xs tracking-[0.2em] uppercase border border-[#B49A6B] text-[#B49A6B] px-6 py-3 text-center hover:bg-[#B49A6B] hover:text-white transition-all">Book Now</a>
+    </div>
+  </nav>
+
+  <!-- ═══════════ SERVICE CONTENT (rendered by JS) ═══════════ -->
+  <div id="service-content">
+
+    <!-- HERO -->
+    <section id="service-hero">
+      <div id="hero-bg"></div>
+      <div class="relative z-10 max-w-7xl mx-auto px-6 pb-14 pt-40 w-full">
+        <!-- Breadcrumb -->
+        <nav class="mb-6 hero-fade hero-fade-1" aria-label="Breadcrumb">
+          <ol class="flex items-center gap-2 font-['Jost'] text-[10px] tracking-[0.2em] uppercase text-[#C8B89A]/70">
+            <li><a href="index.html" class="hover:text-[#B49A6B] transition-colors">Home</a></li>
+            <li class="opacity-50">›</li>
+            <li><a href="services.html" class="hover:text-[#B49A6B] transition-colors">Services</a></li>
+            <li class="opacity-50">›</li>
+            <li id="breadcrumb-title" class="text-[#B49A6B]"></li>
+          </ol>
+        </nav>
+        <!-- Category label -->
+        <p id="hero-category" class="font-['Jost'] text-[10px] tracking-[0.3em] uppercase text-[#B49A6B] mb-3 hero-fade hero-fade-1"></p>
+        <!-- Title -->
+        <h1 id="hero-title" class="font-['Cormorant_Garamond'] text-6xl sm:text-7xl lg:text-8xl text-[#F7F3EE] leading-[0.92] mb-4 hero-fade hero-fade-2"></h1>
+        <!-- Tagline -->
+        <p id="hero-tagline" class="font-['Cormorant_Garamond'] text-2xl italic text-[#B49A6B] mb-8 hero-fade hero-fade-3"></p>
+        <!-- Meta pills -->
+        <div class="flex flex-wrap gap-3 hero-fade hero-fade-4">
+          <span id="hero-duration" class="font-['Jost'] text-[10px] tracking-[0.2em] uppercase bg-white/10 backdrop-blur-sm border border-white/20 text-[#F7F3EE] px-4 py-2 rounded-full"></span>
+          <span id="hero-price"    class="font-['Jost'] text-[10px] tracking-[0.2em] uppercase bg-[#B49A6B]/20 backdrop-blur-sm border border-[#B49A6B]/40 text-[#B49A6B] px-4 py-2 rounded-full"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- BODY -->
+    <article class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-[1fr_340px] gap-16 items-start">
+
+      <!-- ── LEFT: main content ── -->
+      <div>
+
+        <!-- Intro -->
+        <div class="reveal mb-14">
+          <div class="ornament">
+            <span class="font-['Jost'] text-[10px] tracking-[0.25em] uppercase text-[#B49A6B]">Overview</span>
+          </div>
+          <p id="service-intro" class="font-['Cormorant_Garamond'] text-2xl sm:text-3xl text-[#2C2416] leading-relaxed"></p>
+        </div>
+
+        <!-- Description paragraphs -->
+        <div id="service-desc" class="reveal mb-14 space-y-5"></div>
+
+        <!-- Benefits -->
+        <div class="reveal mb-14">
+          <div class="ornament">
+            <span class="font-['Jost'] text-[10px] tracking-[0.25em] uppercase text-[#B49A6B]">Benefits</span>
+          </div>
+          <ul id="benefits-list" class="grid sm:grid-cols-2 gap-3"></ul>
+        </div>
+
+        <!-- What to expect -->
+        <div class="reveal mb-14">
+          <div class="ornament">
+            <span class="font-['Jost'] text-[10px] tracking-[0.25em] uppercase text-[#B49A6B]">What to Expect</span>
+          </div>
+          <p id="what-to-expect" class="font-['Jost'] text-sm font-light text-[#6B5740] leading-relaxed"></p>
+        </div>
+
+        <!-- Good for -->
+        <div class="reveal">
+          <div class="ornament">
+            <span class="font-['Jost'] text-[10px] tracking-[0.25em] uppercase text-[#B49A6B]">Good For</span>
+          </div>
+          <div id="good-for" class="flex flex-wrap gap-2"></div>
+        </div>
+
+      </div>
+
+      <!-- ── RIGHT: sticky booking card ── -->
+      <aside class="lg:sticky lg:top-32">
+        <div class="bg-[#2C2416] rounded-3xl p-8 reveal">
+          <p class="font-['Jost'] text-[10px] tracking-[0.25em] uppercase text-[#B49A6B] mb-2">Reserve This Treatment</p>
+          <h3 id="card-title" class="font-['Cormorant_Garamond'] text-3xl text-[#F7F3EE] mb-1"></h3>
+          <p id="card-tagline" class="font-['Cormorant_Garamond'] italic text-lg text-[#B49A6B] mb-6"></p>
+
+          <div class="space-y-3 mb-8">
+            <div class="flex justify-between items-center border-b border-[#B49A6B]/15 pb-3">
+              <span class="font-['Jost'] text-xs text-[#8B7A60] tracking-wide">Duration</span>
+              <span id="card-duration" class="font-['Jost'] text-xs text-[#C8B89A]"></span>
+            </div>
+            <div class="flex justify-between items-center border-b border-[#B49A6B]/15 pb-3">
+              <span class="font-['Jost'] text-xs text-[#8B7A60] tracking-wide">Starting from</span>
+              <span id="card-price" class="font-['Cormorant_Garamond'] text-xl text-[#B49A6B]"></span>
+            </div>
+            <div class="flex justify-between items-center pb-1">
+              <span class="font-['Jost'] text-xs text-[#8B7A60] tracking-wide">Category</span>
+              <span id="card-category" class="font-['Jost'] text-xs text-[#C8B89A]"></span>
+            </div>
+          </div>
+
+          <a id="card-book-btn" href="index.html#booking"
+            class="block w-full text-center font-['Jost'] text-[10px] tracking-[0.25em] uppercase bg-[#B49A6B] text-[#F7F3EE] py-4 rounded-full hover:bg-[#8B6F47] transition-all duration-300 mb-4">
+            Book This Treatment
+          </a>
+          <a href="services.html"
+            class="block w-full text-center font-['Jost'] text-[10px] tracking-[0.2em] uppercase border border-[#B49A6B]/30 text-[#8B7A60] py-3 rounded-full hover:border-[#B49A6B] hover:text-[#B49A6B] transition-all duration-300">
+            ← All Services
+          </a>
+        </div>
+      </aside>
+
+    </article>
+
+    <!-- RELATED SERVICES -->
+    <section class="bg-[#F0E8DC] py-20">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="mb-12 reveal">
+          <p class="font-['Jost'] text-[10px] tracking-[0.3em] uppercase text-[#B49A6B] mb-2">You Might Also Like</p>
+          <h2 class="font-['Cormorant_Garamond'] text-4xl text-[#2C2416]">Related Services</h2>
+        </div>
+        <div id="related-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ═══════════ NOT FOUND STATE ═══════════ -->
+  <div id="not-found" class="min-h-screen flex flex-col items-center justify-center text-center px-6 pt-32">
+    <p class="font-['Jost'] text-[10px] tracking-[0.3em] uppercase text-[#B49A6B] mb-4">Oops</p>
+    <h1 class="font-['Cormorant_Garamond'] text-6xl text-[#2C2416] mb-4">Service Not Found</h1>
+    <p class="font-['Jost'] text-sm text-[#6B5740] mb-10">We couldn't find the service you're looking for.</p>
+    <a href="services.html" class="font-['Jost'] text-xs tracking-[0.2em] uppercase bg-[#2C2416] text-[#F7F3EE] px-8 py-4 hover:bg-[#8B6F47] transition-all duration-300">View All Services</a>
+  </div>
+
+  <!-- ═══════════ STICKY BOOKING BAR (mobile) ═══════════ -->
+  <div id="sticky-bar" class="pb-safe">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
+      <div>
+        <p id="bar-title" class="font-['Cormorant_Garamond'] text-lg text-[#F7F3EE] leading-tight"></p>
+        <p id="bar-price" class="font-['Jost'] text-[10px] tracking-[0.15em] uppercase text-[#B49A6B]"></p>
+      </div>
+      <a href="index.html#booking" class="flex-shrink-0 font-['Jost'] text-[10px] tracking-[0.2em] uppercase bg-[#B49A6B] text-[#F7F3EE] px-6 py-3 rounded-full hover:bg-[#8B6F47] transition-all duration-300">
+        Book Now
+      </a>
+    </div>
+  </div>
+
+  <!-- ═══════════ FOOTER ═══════════ -->
+  <footer class="bg-[#2C2416] text-[#C8B89A] border-t border-[#B49A6B]/10 py-10">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <a href="index.html" class="font-['Cormorant_Garamond'] text-xl tracking-widest text-[#F7F3EE] font-light">SALLY SPA</a>
+      <p class="font-['Jost'] text-[10px] tracking-wider text-[#5A4A35]">© 2025 Sally Spa. All rights reserved.</p>
+      <p class="font-['Jost'] text-[10px] tracking-wider text-[#5A4A35]">Crafted with care ✦ Nairobi, Kenya</p>
+    </div>
+  </footer>
+
+  <!-- ═══════════ SCRIPTS ═══════════ -->
+  <script src="services.js"></script>
+  <script>
+  (function () {
+
+    /* ─── 1. Read ?id= from URL ─── */
+    const params  = new URLSearchParams(window.location.search);
+    const id      = params.get('id');
+    const service = id ? getServiceById(id) : null;
+
+    /* ─── 2. Not found ─── */
+    if (!service) {
+      document.getElementById('service-content').style.display = 'none';
+      document.getElementById('not-found').style.display = 'flex';
+      document.getElementById('sticky-bar').style.display = 'none';
+      document.title = 'Service Not Found — Sally Spa';
+      initNav();
+      return;
+    }
+
+    /* ─── 3. Update <title> & <meta> ─── */
+    document.title = `${service.title} — Sally Spa`;
+
+    /* ─── 4. HERO ─── */
+    const heroBg = document.getElementById('hero-bg');
+    // Try heroImage first, fall back to card image, fall back to gradient
+    const imgSrc = service.heroImage || service.image;
+    heroBg.style.backgroundImage = `url('${imgSrc}')`;
+    // If both images fail, show gradient fallback
+    const testImg = new Image();
+    testImg.onerror = () => {
+      heroBg.style.backgroundImage =
+        'linear-gradient(145deg, #C4A882 0%, #8B6F47 40%, #5C4A34 80%, #3D2F1E 100%)';
+    };
+    testImg.src = imgSrc;
+
+    setText('breadcrumb-title', service.title);
+    setText('hero-category',    service.category);
+    setText('hero-title',       service.title);
+    setText('hero-tagline',     service.tagline);
+    setText('hero-duration',    '⏱ ' + service.duration);
+    setText('hero-price',       service.price);
+
+    /* ─── 5. Booking card (sidebar) ─── */
+    setText('card-title',    service.title);
+    setText('card-tagline',  service.tagline);
+    setText('card-duration', service.duration);
+    setText('card-price',    service.price);
+    setText('card-category', service.category);
+
+    // Pre-fill booking link with service name
+    document.getElementById('card-book-btn').href =
+      `index.html#booking?service=${encodeURIComponent(service.title)}`;
+
+    /* ─── 6. Body content ─── */
+    setText('service-intro', service.intro);
+
+    const descEl = document.getElementById('service-desc');
+    descEl.innerHTML = service.description.map(p =>
+      `<p class="font-['Jost'] text-sm font-light text-[#6B5740] leading-relaxed">${p}</p>`
+    ).join('');
+
+    const benefitsList = document.getElementById('benefits-list');
+    benefitsList.innerHTML = service.benefits.map(b =>
+      `<li class="benefit-pill">
+        <span class="font-['Jost'] text-xs font-light text-[#5A4A35] leading-relaxed">${b}</span>
+      </li>`
+    ).join('');
+
+    setText('what-to-expect', service.whatToExpect);
+
+    const goodForEl = document.getElementById('good-for');
+    goodForEl.innerHTML = service.goodFor.map(tag =>
+      `<span class="good-for-tag">${tag}</span>`
+    ).join('');
+
+    /* ─── 7. Sticky bar ─── */
+    setText('bar-title', service.title);
+    setText('bar-price', service.price);
+
+    /* ─── 8. Related services (same category, exclude self) ─── */
+    const related = SERVICES
+      .filter(s => s.categorySlug === service.categorySlug && s.id !== service.id)
+      .slice(0, 3);
+
+    const relatedGrid = document.getElementById('related-grid');
+    if (related.length === 0) {
+      relatedGrid.closest('section').style.display = 'none';
+    } else {
+      relatedGrid.innerHTML = related.map((s, i) => `
+        <a href="service.html?id=${s.id}" class="related-card reveal" style="transition-delay:${i * 0.1}s">
+          <div class="overflow-hidden">
+            <img src="${s.image}" alt="${s.title}" class="related-img"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+            <div class="related-img-placeholder bg-gradient-to-br from-[#E8D9C4] to-[#C4A882]"
+              style="display:none">${s.icon}</div>
+          </div>
+          <div class="p-5">
+            <p class="font-['Jost'] text-[10px] tracking-[0.2em] uppercase text-[#B49A6B] mb-1">${s.duration}</p>
+            <h3 class="font-['Cormorant_Garamond'] text-xl text-[#2C2416] mb-1">${s.title}</h3>
+            <p class="font-['Jost'] text-xs font-light text-[#6B5740]">${s.tagline}</p>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    /* ─── 9. Utilities ─── */
+    function setText(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    }
+
+    /* ─── 10. Scroll reveal ─── */
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    // Observe after a tick so dynamic content is in the DOM
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    });
+
+    /* ─── 11. Sticky bar on scroll ─── */
+    const stickyBar = document.getElementById('sticky-bar');
+    const hero      = document.getElementById('service-hero');
+    const scrollWatcher = () => {
+      const heroBottom = hero.getBoundingClientRect().bottom;
+      stickyBar.classList.toggle('visible', heroBottom < 0);
+    };
+    window.addEventListener('scroll', scrollWatcher, { passive: true });
+
+    /* ─── 12. Navbar scroll ─── */
+    initNav();
+
+  })();
+
+  /* ─── Navbar + mobile menu (runs always) ─── */
+  function initNav() {
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 60);
+    }, { passive: true });
+
+    const toggle = document.getElementById('menu-toggle');
+    const menu   = document.getElementById('mobile-menu');
+    toggle.addEventListener('click', () => {
+      const isOpen = !menu.classList.contains('hidden');
+      if (isOpen) {
+        menu.classList.remove('flex'); menu.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+      } else {
+        menu.classList.remove('hidden'); menu.classList.add('flex');
+        toggle.setAttribute('aria-expanded', 'true');
+      }
+    });
+    menu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        menu.classList.remove('flex'); menu.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    /* Subtle hero parallax on scroll */
+    const heroBg = document.getElementById('hero-bg');
+    if (heroBg) {
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        heroBg.style.transform = `scale(1.08) translateY(${y * 0.25}px)`;
+      }, { passive: true });
+    }
+  }
+  </script>
+</body>
+</html>
