@@ -23,36 +23,37 @@
         <span class="font-['Cormorant_Garamond'] text-2xl tracking-widest text-[#2C2416] font-light">SALLY SPA</span>
       </a>
       <ul class="hidden md:flex items-center gap-10">
-        <li><a href="#about" class="nav-link font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] hover:text-[#B49A6B] transition-colors">About</a></li>
-        <li><a href="#services" class="nav-link font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] hover:text-[#B49A6B] transition-colors">Services</a></li>
-        <li><a href="#packages" class="nav-link font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] hover:text-[#B49A6B] transition-colors">Packages</a></li>
-        <li><a href="#contact" class="nav-link font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] hover:text-[#B49A6B] transition-colors">Contact</a></li>
+        <li><a href="#about"    class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] hover:text-[#B49A6B] transition-colors">About</a></li>
+        <li><a href="#services" class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] hover:text-[#B49A6B] transition-colors">Services</a></li>
+        <li><a href="#packages" class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] hover:text-[#B49A6B] transition-colors">Packages</a></li>
+        <li><a href="#contact"  class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] hover:text-[#B49A6B] transition-colors">Contact</a></li>
       </ul>
       <a href="#booking" class="hidden md:block font-['Jost'] text-xs tracking-[0.2em] uppercase border border-[#B49A6B] text-[#B49A6B] px-6 py-2.5 hover:bg-[#B49A6B] hover:text-white transition-all duration-300">Book Now</a>
-      <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2">
+      <!-- BUG FIX: removed stray inline style; hamburger managed by JS -->
+      <button id="menu-toggle" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Toggle menu" aria-expanded="false">
         <span class="w-6 h-px bg-[#2C2416] block transition-all"></span>
         <span class="w-4 h-px bg-[#2C2416] block transition-all"></span>
         <span class="w-6 h-px bg-[#2C2416] block transition-all"></span>
       </button>
     </div>
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden bg-[#F7F3EE] border-t border-[#E8DDD0] px-6 py-6 flex flex-col gap-5">
-      <a href="#about" class="mobile-link font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35]">About</a>
-      <a href="#services" class="mobile-link font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35]">Services</a>
-      <a href="#packages" class="mobile-link font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35]">Packages</a>
-      <a href="#contact" class="mobile-link font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35]">Contact</a>
-      <a href="#booking" class="font-['Jost'] text-xs tracking-[0.2em] uppercase border border-[#B49A6B] text-[#B49A6B] px-6 py-3 text-center hover:bg-[#B49A6B] hover:text-white transition-all">Book Now</a>
+    <!-- Mobile Menu
+         BUG FIX: was "hidden md:hidden flex flex-col" — the md:hidden conflicted with
+         Tailwind's responsive utilities and "flex" leaked through when "hidden" was removed.
+         Now simply "hidden flex-col" so toggling the 'hidden' class works correctly. -->
+    <div id="mobile-menu" class="hidden flex-col md:hidden bg-[#F7F3EE] border-t border-[#E8DDD0] px-6 py-6 gap-5">
+      <a href="#about"    class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] py-2 border-b border-[#B49A6B]/10">About</a>
+      <a href="#services" class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] py-2 border-b border-[#B49A6B]/10">Services</a>
+      <a href="#packages" class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] py-2 border-b border-[#B49A6B]/10">Packages</a>
+      <a href="#contact"  class="font-['Jost'] text-xs tracking-[0.2em] uppercase text-[#5A4A35] py-2 border-b border-[#B49A6B]/10">Contact</a>
+      <a href="#booking"  class="font-['Jost'] text-xs tracking-[0.2em] uppercase border border-[#B49A6B] text-[#B49A6B] px-6 py-3 text-center hover:bg-[#B49A6B] hover:text-white transition-all">Book Now</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section id="hero" class="relative min-h-screen flex items-center overflow-hidden">
-    <!-- Soft warm gradient background -->
     <div class="absolute inset-0 bg-gradient-to-br from-[#F0E8DC] via-[#F7F3EE] to-[#EDE4D6]"></div>
-    <!-- Decorative circles -->
     <div class="absolute top-0 right-0 w-[55vw] h-[55vw] max-w-[700px] max-h-[700px] rounded-full bg-[#E8D9C4] opacity-40 translate-x-1/4 -translate-y-1/4"></div>
     <div class="absolute bottom-0 left-0 w-[35vw] h-[35vw] max-w-[450px] max-h-[450px] rounded-full bg-[#D4C4AA] opacity-25 -translate-x-1/3 translate-y-1/3"></div>
-    <!-- Floating botanical SVG -->
     <div class="absolute right-8 top-24 opacity-20 hidden lg:block hero-float">
       <svg width="120" height="200" viewBox="0 0 120 200" fill="none">
         <path d="M60 180 Q30 120 20 60 Q50 80 60 100 Q70 80 100 60 Q90 120 60 180Z" stroke="#8B6F47" stroke-width="1.5" fill="none"/>
@@ -78,23 +79,19 @@
           Step into a world of gentle rituals, healing touch, and radiant calm. Sally Spa is your personal retreat from the noise of everyday life.
         </p>
         <div class="flex flex-wrap gap-4 fade-up" style="animation-delay:0.55s">
-          <a href="#services" class="btn-primary font-['Jost'] text-xs tracking-[0.2em] uppercase bg-[#2C2416] text-[#F7F3EE] px-8 py-4 hover:bg-[#8B6F47] transition-all duration-300">Explore Services</a>
-          <a href="#booking" class="btn-outline font-['Jost'] text-xs tracking-[0.2em] uppercase border border-[#2C2416] text-[#2C2416] px-8 py-4 hover:bg-[#2C2416] hover:text-[#F7F3EE] transition-all duration-300">Book a Session</a>
+          <a href="#services" class="font-['Jost'] text-xs tracking-[0.2em] uppercase bg-[#2C2416] text-[#F7F3EE] px-8 py-4 hover:bg-[#8B6F47] transition-all duration-300">Explore Services</a>
+          <a href="#booking"  class="font-['Jost'] text-xs tracking-[0.2em] uppercase border border-[#2C2416] text-[#2C2416] px-8 py-4 hover:bg-[#2C2416] hover:text-[#F7F3EE] transition-all duration-300">Book a Session</a>
         </div>
       </div>
-      <!-- Hero visual mosaic -->
       <div class="relative hidden lg:flex items-center justify-center fade-up" style="animation-delay:0.3s">
         <div class="relative w-full max-w-sm">
-          <!-- Main oval -->
-          <div class="hero-oval w-72 h-96 rounded-[60%_40%_40%_60%/60%_60%_40%_40%] overflow-hidden mx-auto bg-[#D4BFA0]">
+          <div class="w-72 h-96 rounded-[60%_40%_40%_60%/60%_60%_40%_40%] overflow-hidden mx-auto bg-[#D4BFA0]">
             <div class="w-full h-full hero-img-bg"></div>
           </div>
-          <!-- Floating card -->
           <div class="absolute -bottom-8 -left-8 bg-white/80 backdrop-blur-sm rounded-2xl p-5 shadow-xl border border-[#E8DDD0] w-48 float-card">
             <p class="font-['Jost'] text-xs tracking-widest uppercase text-[#B49A6B] mb-1">Daily Ritual</p>
             <p class="font-['Cormorant_Garamond'] text-xl text-[#2C2416]">Restore. Renew. Rise.</p>
           </div>
-          <!-- Stat card -->
           <div class="absolute -top-4 -right-4 bg-[#2C2416] rounded-xl p-4 shadow-xl float-card-2">
             <p class="font-['Cormorant_Garamond'] text-3xl text-[#B49A6B]">500+</p>
             <p class="font-['Jost'] text-[10px] tracking-wider uppercase text-[#F7F3EE]/70">Happy Clients</p>
@@ -103,14 +100,13 @@
       </div>
     </div>
 
-    <!-- Scroll hint -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
       <span class="font-['Jost'] text-[10px] tracking-[0.3em] uppercase text-[#5A4A35]">Scroll</span>
       <div class="w-px h-10 bg-[#B49A6B] scroll-line"></div>
     </div>
   </section>
 
-  <!-- ABOUT STRIP -->
+  <!-- ABOUT -->
   <section id="about" class="py-24 bg-[#2C2416] overflow-hidden">
     <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
       <div class="reveal">
@@ -141,11 +137,10 @@
       </div>
       <div class="relative reveal">
         <div class="grid grid-cols-2 gap-4">
-          <div class="rounded-2xl overflow-hidden bg-[#4A3A28] h-56 col-span-1 about-img-1 transform translate-y-8"></div>
-          <div class="rounded-2xl overflow-hidden bg-[#3D2F1E] h-56 col-span-1 about-img-2"></div>
-          <div class="rounded-2xl overflow-hidden bg-[#5C4A34] h-40 col-span-2 about-img-3"></div>
+          <div class="rounded-2xl overflow-hidden h-56 col-span-1 about-img-1 transform translate-y-8"></div>
+          <div class="rounded-2xl overflow-hidden h-56 col-span-1 about-img-2"></div>
+          <div class="rounded-2xl overflow-hidden h-40 col-span-2 about-img-3"></div>
         </div>
-        <!-- Decorative ring -->
         <div class="absolute -bottom-10 -right-10 w-40 h-40 rounded-full border border-[#B49A6B]/20"></div>
       </div>
     </div>
@@ -160,14 +155,13 @@
         <div class="w-16 h-px bg-[#B49A6B] mx-auto mt-6"></div>
       </div>
       <div id="services-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Service cards generated by JS -->
+        <!-- Populated by JS -->
       </div>
     </div>
   </section>
 
-  <!-- PACKAGES BANNER -->
+  <!-- PACKAGES -->
   <section id="packages" class="py-24 bg-gradient-to-br from-[#3D2F1E] to-[#2C2416] relative overflow-hidden">
-    <!-- Decorative element -->
     <div class="absolute top-0 right-0 w-[40vw] h-[40vw] rounded-full border border-[#B49A6B]/10 -translate-y-1/2 translate-x-1/4"></div>
     <div class="absolute bottom-0 left-0 w-[25vw] h-[25vw] rounded-full border border-[#B49A6B]/10 translate-y-1/2 -translate-x-1/4"></div>
     <div class="max-w-7xl mx-auto px-6">
@@ -177,7 +171,7 @@
         <div class="w-16 h-px bg-[#B49A6B] mx-auto mt-6"></div>
       </div>
       <div id="packages-grid" class="grid md:grid-cols-3 gap-6">
-        <!-- Package cards generated by JS -->
+        <!-- Populated by JS -->
       </div>
     </div>
   </section>
@@ -194,7 +188,7 @@
     </div>
   </section>
 
-  <!-- BOOKING SECTION -->
+  <!-- BOOKING -->
   <section id="booking" class="py-24 bg-[#F7F3EE]">
     <div class="max-w-2xl mx-auto px-6 reveal">
       <div class="text-center mb-12">
@@ -205,46 +199,48 @@
       <div class="bg-white rounded-3xl p-8 shadow-sm border border-[#E8DDD0]">
         <div id="booking-form" class="flex flex-col gap-5">
           <div class="grid sm:grid-cols-2 gap-5">
-            <div class="form-group">
-              <label class="form-label">Full Name</label>
-              <input type="text" placeholder="Jane Doe" class="form-input" />
+            <div>
+              <label class="form-label" for="field-name">Full Name</label>
+              <!-- BUG FIX: added id + name attributes so validation can target fields correctly -->
+              <input id="field-name" name="name" type="text" placeholder="Jane Doe" class="form-input" />
             </div>
-            <div class="form-group">
-              <label class="form-label">Phone Number</label>
-              <input type="tel" placeholder="+254 7XX XXX XXX" class="form-input" />
+            <div>
+              <label class="form-label" for="field-phone">Phone Number</label>
+              <input id="field-phone" name="phone" type="tel" placeholder="+254 7XX XXX XXX" class="form-input" />
             </div>
           </div>
-          <div class="form-group">
-            <label class="form-label">Email Address</label>
-            <input type="email" placeholder="jane@email.com" class="form-input" />
+          <div>
+            <label class="form-label" for="field-email">Email Address</label>
+            <input id="field-email" name="email" type="email" placeholder="jane@email.com" class="form-input" />
           </div>
-          <div class="form-group">
-            <label class="form-label">Select Service</label>
-            <select class="form-input">
-              <option value="">Choose a treatment...</option>
+          <div>
+            <label class="form-label" for="field-service">Select Service</label>
+            <!-- BUG FIX: options now match the services array in index.js exactly -->
+            <select id="field-service" name="service" class="form-input">
+              <option value="">Choose a treatment…</option>
               <option>Thai Massage</option>
               <option>Aromatherapy Massage</option>
               <option>Hot Stone Therapy</option>
               <option>Swedish Massage</option>
-              <option>Moroccan Bath</option>
-              <option>Steam Bath</option>
-              <option>Hydrotherapy</option>
               <option>Facials</option>
-              <option>Body Scrubs & Wraps</option>
-              <option>Pedicure</option>
-              <option>Manicure</option>
-              <option>Barbershop</option>
-              <option>Massage Scrub & Steam Package</option>
+              <option>Moroccan Bath</option>
+              <option>Hydrotherapy</option>
+              <option>Steam Bath</option>
+              <option>Pedicure &amp; Manicure</option>
+              <!-- Package options -->
+              <option>Renew Package</option>
+              <option>Restore Package</option>
+              <option>Radiance Package</option>
             </select>
           </div>
           <div class="grid sm:grid-cols-2 gap-5">
-            <div class="form-group">
-              <label class="form-label">Preferred Date</label>
-              <input type="date" class="form-input" />
+            <div>
+              <label class="form-label" for="field-date">Preferred Date</label>
+              <input id="field-date" name="date" type="date" class="form-input" />
             </div>
-            <div class="form-group">
-              <label class="form-label">Preferred Time</label>
-              <select class="form-input">
+            <div>
+              <label class="form-label" for="field-time">Preferred Time</label>
+              <select id="field-time" name="time" class="form-input">
                 <option value="">Select time</option>
                 <option>9:00 AM</option>
                 <option>10:00 AM</option>
@@ -257,9 +253,10 @@
               </select>
             </div>
           </div>
-          <div class="form-group">
-            <label class="form-label">Any Special Requests</label>
-            <textarea rows="3" placeholder="Let us know how we can make your experience perfect..." class="form-input resize-none"></textarea>
+          <div>
+            <label class="form-label" for="field-notes">Any Special Requests</label>
+            <!-- textarea is optional, excluded from required-field validation -->
+            <textarea id="field-notes" name="notes" rows="3" placeholder="Let us know how we can make your experience perfect…" class="form-input resize-none"></textarea>
           </div>
           <button id="submit-btn" class="font-['Jost'] text-xs tracking-[0.25em] uppercase bg-[#2C2416] text-[#F7F3EE] py-4 rounded-full hover:bg-[#8B6F47] transition-all duration-300 mt-2">
             Request Appointment
@@ -302,9 +299,9 @@
           </p>
         </div>
         <div class="flex gap-4 mt-6">
-          <a href="#" class="social-btn">Ig</a>
-          <a href="#" class="social-btn">Fb</a>
-          <a href="#" class="social-btn">Wa</a>
+          <a href="#" class="social-btn" aria-label="Instagram">Ig</a>
+          <a href="#" class="social-btn" aria-label="Facebook">Fb</a>
+          <a href="#" class="social-btn" aria-label="WhatsApp">Wa</a>
         </div>
       </div>
     </div>

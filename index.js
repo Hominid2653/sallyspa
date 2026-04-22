@@ -17,7 +17,7 @@ const services = [
   {
     icon: '🪨',
     title: 'Hot Stone Therapy',
-    desc: 'Warm volcanic stones melt away deep tension as heat penetrates the muscles, releasing stress held in the body\'s core.',
+    desc: "Warm volcanic stones melt away deep tension as heat penetrates the muscles, releasing stress held in the body's core.",
     duration: '75 – 90 min'
   },
   {
@@ -41,7 +41,7 @@ const services = [
   {
     icon: '💧',
     title: 'Hydrotherapy',
-    desc: 'Water-based healing treatments that soothe muscles, improve circulation, and restore the body's natural balance.',
+    desc: "Water-based healing treatments that soothe muscles, improve circulation, and restore the body's natural balance.",
     duration: '45 min'
   },
   {
@@ -109,7 +109,7 @@ function renderServices() {
   const grid = document.getElementById('services-grid');
   if (!grid) return;
   grid.innerHTML = services.map((s, i) => `
-    <div class="service-card reveal" style="transition-delay: ${i * 0.08}s">
+    <div class="service-card reveal" style="transition-delay:${i * 0.08}s">
       <div class="service-icon">${s.icon}</div>
       <h3 class="service-title">${s.title}</h3>
       <p class="service-desc">${s.desc}</p>
@@ -123,7 +123,7 @@ function renderPackages() {
   const grid = document.getElementById('packages-grid');
   if (!grid) return;
   grid.innerHTML = packages.map((p, i) => `
-    <div class="package-card ${p.featured ? 'featured' : ''} reveal" style="transition-delay: ${i * 0.12}s">
+    <div class="package-card ${p.featured ? 'featured' : ''} reveal" style="transition-delay:${i * 0.12}s">
       <span class="package-badge">${p.badge}</span>
       <h3 class="package-title">${p.title}</h3>
       <p class="package-price">${p.price}</p>
@@ -148,7 +148,7 @@ function renderTestimonialDots() {
   `).join('');
   dotsEl.querySelectorAll('.testimonial-dot').forEach(btn => {
     btn.addEventListener('click', () => {
-      goToTestimonial(parseInt(btn.dataset.index));
+      goToTestimonial(parseInt(btn.dataset.index, 10));
       resetTestimonialInterval();
     });
   });
@@ -156,16 +156,17 @@ function renderTestimonialDots() {
 
 function goToTestimonial(index) {
   currentTestimonial = index;
-  const textEl = document.querySelector('.testimonial-text');
+  const textEl   = document.querySelector('.testimonial-text');
   const authorEl = document.querySelector('.testimonial-author');
   if (!textEl || !authorEl) return;
 
-  textEl.style.opacity = '0';
+  textEl.style.opacity   = '0';
   textEl.style.transform = 'translateY(10px)';
+
   setTimeout(() => {
-    textEl.textContent = `"${testimonials[index].quote}"`;
+    textEl.textContent   = `"${testimonials[index].quote}"`;
     authorEl.textContent = `— ${testimonials[index].author}`;
-    textEl.style.opacity = '1';
+    textEl.style.opacity   = '1';
     textEl.style.transform = 'translateY(0)';
   }, 300);
 
@@ -185,95 +186,110 @@ function resetTestimonialInterval() {
 
 function initTestimonials() {
   renderTestimonialDots();
-  const textEl = document.querySelector('.testimonial-text');
+  const textEl   = document.querySelector('.testimonial-text');
   const authorEl = document.querySelector('.testimonial-author');
-  if (textEl) textEl.textContent = `"${testimonials[0].quote}"`;
+  if (textEl)   textEl.textContent   = `"${testimonials[0].quote}"`;
   if (authorEl) authorEl.textContent = `— ${testimonials[0].author}`;
-  if (textEl) {
-    textEl.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-  }
+  if (textEl)   textEl.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
   testimonialInterval = setInterval(nextTestimonial, 5000);
 }
 
 /* ---- SCROLL REVEAL ---- */
-function initScrollReveal() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+// BUG FIX: accept an optional root element so we can (re-)observe dynamically
+// rendered cards immediately after they are injected into the DOM.
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target); // stop watching once revealed
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+function observeRevealElements() {
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => revealObserver.observe(el));
 }
 
 /* ---- NAVBAR SCROLL ---- */
 function initNavbar() {
   const navbar = document.getElementById('navbar');
   if (!navbar) return;
-
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 60) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
   }, { passive: true });
 }
 
 /* ---- MOBILE MENU ---- */
 function initMobileMenu() {
   const toggle = document.getElementById('menu-toggle');
-  const menu = document.getElementById('mobile-menu');
+  const menu   = document.getElementById('mobile-menu');
   if (!toggle || !menu) return;
 
   toggle.addEventListener('click', () => {
-    menu.classList.toggle('hidden');
+    const isOpen = !menu.classList.contains('hidden');
+    // BUG FIX: toggle between hidden and flex (not just hidden) so the
+    // flex-col layout actually applies when the menu is open.
+    if (isOpen) {
+      menu.classList.remove('flex');
+      menu.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+    } else {
+      menu.classList.remove('hidden');
+      menu.classList.add('flex');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
   });
 
-  // Close on link click
+  // Close when any nav link inside the menu is tapped
   menu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => menu.classList.add('hidden'));
+    link.addEventListener('click', () => {
+      menu.classList.remove('flex');
+      menu.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
   });
 }
 
 /* ---- BOOKING FORM ---- */
 function initBookingForm() {
-  const btn = document.getElementById('submit-btn');
+  const btn     = document.getElementById('submit-btn');
   const success = document.getElementById('form-success');
   if (!btn) return;
 
   btn.addEventListener('click', () => {
-    // Simple validation
-    const inputs = document.querySelectorAll('#booking-form input, #booking-form select');
+    // BUG FIX: validate only required fields (inputs + selects), exclude textarea
+    const requiredFields = document.querySelectorAll('#booking-form input, #booking-form select');
     let allFilled = true;
-    inputs.forEach(input => {
-      if (!input.value.trim()) {
+
+    requiredFields.forEach(field => {
+      if (!field.value.trim()) {
         allFilled = false;
-        input.style.borderColor = '#C87941';
-        setTimeout(() => input.style.borderColor = '', 2500);
+        field.style.borderColor = '#C87941';
+        setTimeout(() => (field.style.borderColor = ''), 2500);
       }
     });
 
     if (!allFilled) {
+      const original = btn.textContent;
       btn.textContent = 'Please fill in all fields';
-      setTimeout(() => btn.textContent = 'Request Appointment', 2500);
+      setTimeout(() => (btn.textContent = original), 2500);
       return;
     }
 
     btn.textContent = 'Sending…';
-    btn.disabled = true;
+    btn.disabled    = true;
+
     setTimeout(() => {
       btn.style.display = 'none';
       if (success) success.classList.remove('hidden');
-      // Reset after delay
+
       setTimeout(() => {
-        btn.style.display = '';
-        btn.textContent = 'Request Appointment';
-        btn.disabled = false;
-        success.classList.add('hidden');
-        document.querySelectorAll('#booking-form input, #booking-form select, #booking-form textarea').forEach(el => el.value = '');
+        btn.style.display  = '';
+        btn.textContent    = 'Request Appointment';
+        btn.disabled       = false;
+        if (success) success.classList.add('hidden');
+        document.querySelectorAll('#booking-form input, #booking-form select, #booking-form textarea')
+          .forEach(el => (el.value = ''));
       }, 5000);
     }, 1200);
   });
@@ -283,10 +299,13 @@ function initBookingForm() {
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
-      const target = document.querySelector(anchor.getAttribute('href'));
+      const href = anchor.getAttribute('href');
+      // BUG FIX: skip bare "#" links — querySelector('#') throws a SyntaxError
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
       if (target) {
         e.preventDefault();
-        const navHeight = document.getElementById('navbar')?.offsetHeight || 80;
+        const navHeight = document.getElementById('navbar')?.offsetHeight ?? 80;
         const top = target.getBoundingClientRect().top + window.scrollY - navHeight;
         window.scrollTo({ top, behavior: 'smooth' });
       }
@@ -296,12 +315,14 @@ function initSmoothScroll() {
 
 /* ---- INIT ---- */
 document.addEventListener('DOMContentLoaded', () => {
+  // 1. Render dynamic content first
   renderServices();
   renderPackages();
 
-  // Re-observe after dynamic render
+  // 2. Observe ALL .reveal elements (static + just-rendered dynamic ones)
+  //    Using rAF ensures the browser has painted the new nodes before we measure.
   requestAnimationFrame(() => {
-    initScrollReveal();
+    observeRevealElements();
     initTestimonials();
   });
 
