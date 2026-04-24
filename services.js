@@ -71,7 +71,7 @@ const SERVICES = [
     tagline: 'The art of total relaxation.',
     duration: '60 min',
     price: 'From Ksh 2,200',
-    image: 'services/swedish-massage.jpg',
+    image: 'services/swedish.jpg',
     heroImage: 'services/swedish-massage-hero.jpg',
     intro: 'The Swedish Massage is the gold standard of relaxation — a classic full-body treatment that uses long, gliding strokes, gentle kneading, and rhythmic tapping to bring the body and mind into complete rest. It is the perfect introduction to massage therapy and a perennial favourite for good reason.',
     description: [
