@@ -15,7 +15,7 @@ const SERVICES = [
     tagline: 'Ancient energy, modern relief.',
     duration: '60 – 90 min',
     price: 'From Ksh 2,500',
-    image: 'services/thai-massage.jpg',
+    image: 'services/thai.jpg',
     heroImage: 'services/thai-massage-hero.jpg', // larger hero, falls back to image
     intro: 'Rooted in over 2,500 years of healing tradition, Thai Massage is a full-body therapy that harmonises the body through rhythmic compression, acupressure, and assisted yoga-like stretching. No oils are used — you remain clothed throughout while our therapist guides your body into a deep state of release.',
     description: [
@@ -43,7 +43,7 @@ const SERVICES = [
     tagline: 'Where scent meets surrender.',
     duration: '60 – 90 min',
     price: 'From Ksh 2,800',
-    image: 'services/aromatherapy-massage.jpg',
+    image: 'services/aroma.jpg',
     heroImage: 'services/aromatherapy-massage-hero.jpg',
     intro: 'Aromatherapy Massage is a sensory journey that combines the healing power of touch with the therapeutic properties of plant-based essential oils. Each session is personalised — our therapists blend oils chosen specifically for your mood, needs, and intentions on the day.',
     description: [
@@ -127,7 +127,7 @@ const SERVICES = [
     tagline: 'Fluid, nourishing, deeply still.',
     duration: '60 – 90 min',
     price: 'From Ksh 2,500',
-    image: 'services/oil-massage.jpg',
+    image: 'services/oil.jpg',
     heroImage: 'services/oil-massage-hero.jpg',
     intro: 'Our Oil Massage is a slow, meditative treatment that uses rich carrier oils — jojoba, sweet almond, or coconut — applied through long, deliberate strokes that honour every contour of the body. It is an act of care as much as therapy, leaving the skin deeply nourished and the mind completely still.',
     description: [
@@ -155,7 +155,7 @@ const SERVICES = [
     tagline: 'Reveal your most luminous skin.',
     duration: '45 – 60 min',
     price: 'From Ksh 2,000',
-    image: 'services/body-scrubs.jpg',
+    image: 'services/scrub.jpg',
     heroImage: 'services/body-scrubs-hero.jpg',
     intro: 'Our Body Scrubs & Wraps are luxurious full-body rituals that work in two stages: first, a granular exfoliant buffs away dead skin cells; then a nourishing wrap or moisturising treatment is applied to flood the fresh skin beneath with hydration and nutrients.',
     description: [
@@ -240,7 +240,7 @@ const SERVICES = [
     tagline: 'Purify from the inside out.',
     duration: '30 min',
     price: 'From Ksh 1,200',
-    image: 'services/steam-bath.jpg',
+    image: 'services/steam.jpg',
     heroImage: 'services/steam-bath-hero.jpg',
     intro: 'The Steam Bath is one of the simplest and most powerful wellness rituals available. Moist heat envelops the body, opening pores, loosening muscles, and triggering a deep, natural sweat that carries toxins and impurities out of the body as it cleanses the respiratory system.',
     description: [
