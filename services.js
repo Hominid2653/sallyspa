@@ -212,8 +212,8 @@ const SERVICES = [
     tagline: 'A hammam ritual, reimagined.',
     duration: '60 min',
     price: 'From Ksh 2,500',
-    image: 'services/moroccan-bath.jpg',
-    heroImage: 'services/moroccan-bath-hero.jpg',
+    image: 'services/moroccan.jpg',
+    heroImage: 'services/moroccan.jpg',
     intro: 'The Moroccan Bath — rooted in the ancient hammam traditions of North Africa — is one of the most complete body purification rituals in the world. Steam, exfoliation, and deep cleansing combine in a sequence that leaves the skin velvety, glowing, and completely renewed.',
     description: [
       'The ritual begins in a steam room to open the pores and soften the skin. A traditional black soap (beldi) — made from olives and loaded with vitamin E — is then applied across the entire body and left to work for several minutes. The therapist then uses a kessa mitt to exfoliate with firm, long strokes, rolling away layers of dead skin to reveal the fresh skin beneath.',
@@ -270,7 +270,7 @@ const SERVICES = [
     duration: '45 – 60 min',
     price: 'From Ksh 2,000',
     image: 'services/facials.jpg',
-    heroImage: 'services/facials-hero.jpg',
+    heroImage: 'services/facials.jpg',
     intro: 'Our facials are fully customised to your skin\'s unique needs on the day. No two skins are the same — and no two sessions are either. Your therapist will assess your skin before choosing from our range of natural, results-driven products to cleanse, treat, and restore your complexion.',
     description: [
       'Each facial follows a carefully considered sequence: double cleanse, exfoliation, steam, extractions (if needed), a targeted treatment mask, serum, and moisturiser. The full sequence is adapted based on your skin type — whether dry, oily, combination, sensitive, or mature.',
@@ -298,7 +298,7 @@ const SERVICES = [
     duration: '30 – 45 min',
     price: 'From Ksh 1,200',
     image: 'services/pedicure.jpg',
-    heroImage: 'services/pedicure-hero.jpg',
+    heroImage: 'services/pedicure.jpg',
     intro: 'Our pedicure is a meticulous ritual of foot care that goes far beyond a standard nail appointment. From the warm soak that opens the session to the final polish or buff, every step is carried out with precision and genuine care — because your feet deserve as much attention as any other part of you.',
     description: [
       'The session begins with a warm aromatic foot soak to soften the skin and begin the relaxation process. Cuticles are tended, nails shaped and buffed, and any calluses or hard skin on the heels and soles are carefully removed using professional tools.',
@@ -326,7 +326,7 @@ const SERVICES = [
     duration: '30 – 45 min',
     price: 'From Ksh 1,000',
     image: 'services/manicure.jpg',
-    heroImage: 'services/manicure-hero.jpg',
+    heroImage: 'services/manicure.jpg',
     intro: 'Our manicure is a quiet act of self-regard — a moment set aside entirely for your hands. We tend to everything: cuticles, shape, surface, and finish. The hand massage woven through the session transforms what could be a routine grooming appointment into a genuinely restorative experience.',
     description: [
       'The session begins with a warm hand soak and cuticle softening. Nails are filed to your preferred shape — square, round, almond, or oval — and the cuticles are gently tidied. Any rough skin on the hands is buffed smooth before a nourishing hand scrub is massaged in.',
@@ -354,7 +354,7 @@ const SERVICES = [
     duration: '30 – 45 min',
     price: 'From Ksh 800',
     image: 'services/barbershop.jpg',
-    heroImage: 'services/barbershop-hero.jpg',
+    heroImage: 'services/barbershop.jpg',
     intro: 'Our Barbershop is a space of unhurried precision — where a haircut is never just a haircut. From clean fades to classic scissor cuts, hot towel shaves to beard sculpting, every service is delivered with the kind of careful attention that turns a routine appointment into something worth looking forward to.',
     description: [
       'Our barbers are trained in both modern and classic techniques — whether you want a sharp contemporary fade, a timeless gentleman\'s cut, or a full hot towel shave. The consultation at the start of every session ensures your barber understands exactly what you\'re after before a single cut is made.',
@@ -382,7 +382,7 @@ const SERVICES = [
     duration: '45 – 60 min',
     price: 'From Ksh 2,200',
     image: 'services/skincare.jpg',
-    heroImage: 'services/skincare-hero.jpg',
+    heroImage: 'services/skincare.jpg',
     intro: 'Our Skincare treatments go deeper than a standard facial — they are targeted, results-driven sessions designed to address specific skin concerns. Whether you\'re dealing with hyperpigmentation, acne scarring, premature ageing, or persistent dryness, our therapists work with clinical-grade natural formulations to deliver visible, lasting change.',
     description: [
       'Each skincare session begins with a thorough consultation and skin analysis. Your therapist will identify your primary concerns and select the most appropriate treatment modality — which may include enzyme peels, LED therapy, high-frequency treatment, or targeted active serums applied under occlusion.',
