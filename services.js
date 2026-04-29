@@ -16,7 +16,7 @@ const SERVICES = [
     duration: '60 – 90 min',
     price: 'From Ksh 2,500',
     image: 'services/thai.jpg',
-    heroImage: 'services/thai-massage-hero.jpg', // larger hero, falls back to image
+    heroImage: 'services/thai.jpg', // larger hero, falls back to image
     intro: 'Rooted in over 2,500 years of healing tradition, Thai Massage is a full-body therapy that harmonises the body through rhythmic compression, acupressure, and assisted yoga-like stretching. No oils are used — you remain clothed throughout while our therapist guides your body into a deep state of release.',
     description: [
       'Thai Massage works along the body\'s energy lines — known as "Sen" lines — to release blockages and restore the natural flow of energy. The therapist uses their hands, thumbs, elbows, knees, and feet to apply pressure at precise points, while gently stretching the body into positions that free tight muscles and open the joints.',
@@ -44,7 +44,7 @@ const SERVICES = [
     duration: '60 – 90 min',
     price: 'From Ksh 2,800',
     image: 'services/aroma.jpg',
-    heroImage: 'services/aromatherapy-massage-hero.jpg',
+    heroImage: 'services/aroma.jpg',
     intro: 'Aromatherapy Massage is a sensory journey that combines the healing power of touch with the therapeutic properties of plant-based essential oils. Each session is personalised — our therapists blend oils chosen specifically for your mood, needs, and intentions on the day.',
     description: [
       'Warm essential oils are blended and applied through long, flowing massage strokes that cover the entire body. The oils penetrate the skin while their aromatic molecules enter the bloodstream through inhalation, working on both a physical and emotional level simultaneously.',
@@ -72,7 +72,7 @@ const SERVICES = [
     duration: '60 min',
     price: 'From Ksh 2,200',
     image: 'services/swedish.jpg',
-    heroImage: 'services/swedish-massage-hero.jpg',
+    heroImage: 'services/swedish.jpg',
     intro: 'The Swedish Massage is the gold standard of relaxation — a classic full-body treatment that uses long, gliding strokes, gentle kneading, and rhythmic tapping to bring the body and mind into complete rest. It is the perfect introduction to massage therapy and a perennial favourite for good reason.',
     description: [
       'Five core techniques — effleurage (long strokes), petrissage (kneading), friction, tapotement (tapping), and vibration — are applied in a flowing sequence across the back, shoulders, arms, legs, and feet. The pressure is firm yet never uncomfortable, calibrated throughout to your preference.',
@@ -100,7 +100,7 @@ const SERVICES = [
     duration: '75 – 90 min',
     price: 'From Ksh 3,200',
     image: 'services/hot-stone.jpg',
-    heroImage: 'services/hot-stone-hero.jpg',
+    heroImage: 'services/hot-stone.jpg',
     intro: 'Hot Stone Therapy uses smooth, heated basalt volcanic stones to deliver a massage experience unlike any other. The sustained warmth penetrates deep into the muscle tissue — reaching layers that hands alone cannot access — melting away tension held in the body\'s very core.',
     description: [
       'Basalt stones are heated to the perfect temperature and placed along key points of the body — the spine, palms, between the toes — while the therapist uses additional stones to massage with long, flowing strokes. The heat dilates blood vessels, dramatically increasing circulation to tired muscles.',
@@ -128,7 +128,7 @@ const SERVICES = [
     duration: '60 – 90 min',
     price: 'From Ksh 2,500',
     image: 'services/oil.jpg',
-    heroImage: 'services/oil-massage-hero.jpg',
+    heroImage: 'services/oil.jpg',
     intro: 'Our Oil Massage is a slow, meditative treatment that uses rich carrier oils — jojoba, sweet almond, or coconut — applied through long, deliberate strokes that honour every contour of the body. It is an act of care as much as therapy, leaving the skin deeply nourished and the mind completely still.',
     description: [
       'Warm oil is poured and worked into the skin with unhurried, continuous strokes that flow from head to toe without interruption. The technique draws from Ayurvedic Abhyanga traditions — treating the skin as a sense organ that, when deeply nourished, communicates safety and calm to the entire nervous system.',
@@ -156,7 +156,7 @@ const SERVICES = [
     duration: '45 – 60 min',
     price: 'From Ksh 2,000',
     image: 'services/scrub.jpg',
-    heroImage: 'services/body-scrubs-hero.jpg',
+    heroImage: 'services/scrub.jpg',
     intro: 'Our Body Scrubs & Wraps are luxurious full-body rituals that work in two stages: first, a granular exfoliant buffs away dead skin cells; then a nourishing wrap or moisturising treatment is applied to flood the fresh skin beneath with hydration and nutrients.',
     description: [
       'We use natural exfoliants — sugar, sea salt, coffee, or volcanic ash — blended with botanical oils and butters. The scrub is applied in firm, circular movements across the entire body, stimulating circulation as it removes the outermost layer of dull, dry skin.',
