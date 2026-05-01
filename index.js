@@ -295,6 +295,80 @@ function initBookingForm() {
   });
 }
 
+/* ---- WHATSAPP BOOKING FORM ---- */
+
+function initBookingForm() {
+
+const btn = document.getElementById('submit-btn')
+const success = document.getElementById('form-success')
+
+if (!btn) return
+
+btn.addEventListener('click', e => {
+
+e.preventDefault()
+
+const name = document.getElementById("field-name").value.trim()
+const phone = document.getElementById("field-phone").value.trim()
+const email = document.getElementById("field-email").value.trim()
+const service = document.getElementById("field-service").value.trim()
+const date = document.getElementById("field-date").value.trim()
+const time = document.getElementById("field-time").value.trim()
+const notes = document.getElementById("field-notes").value.trim()
+
+if(!name || !phone || !email || !service || !date || !time){
+
+const original = btn.textContent
+btn.textContent="Please fill in all fields"
+
+setTimeout(()=>{
+btn.textContent = original
+},2000)
+
+return
+}
+
+btn.textContent="Preparing WhatsApp..."
+btn.disabled=true
+
+if(success) success.classList.remove("hidden")
+
+const message =
+
+`Hello Sally Spa,
+
+I would like to request an appointment.
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+
+Service: ${service}
+
+Preferred Date: ${date}
+Preferred Time: ${time}
+
+Special Requests:
+${notes || "None"}
+
+Thank you.`
+
+const url = `https://wa.me/254712858543?text=${encodeURIComponent(message)}`
+
+setTimeout(()=>{
+
+window.open(url,"_blank")
+
+btn.disabled=false
+btn.textContent="Request Appointment"
+
+},1400)
+
+})
+
+}
+
+
 /* ---- SMOOTH ANCHOR SCROLL ---- */
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
