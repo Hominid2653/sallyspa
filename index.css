@@ -335,3 +335,46 @@ body {
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #F0E8DC; }
 ::-webkit-scrollbar-thumb { background: #B49A6B; border-radius: 4px; }
+
+
+/* WhatsApp Floating Button */
+
+.whatsapp-fab {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  width: 60px;
+  height: 60px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 9999;
+  animation: whatsappPulse 2.5s infinite;
+  transition: transform 0.2s ease;
+}
+
+.whatsapp-fab:hover {
+  transform: scale(1.08);
+}
+
+.whatsapp-fab img {
+  width: 30px;
+  height: 30px;
+}
+
+/* Pulse animation */
+
+@keyframes whatsappPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37,211,102,0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 18px rgba(37,211,102,0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37,211,102,0);
+  }
+}
