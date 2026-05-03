@@ -353,7 +353,7 @@ ${notes || "None"}
 
 Thank you.`
 
-const url = `https://wa.me/254712858543?text=${encodeURIComponent(message)}`
+const url = `https://wa.me/254743852667?text=${encodeURIComponent(message)}`
 
 setTimeout(()=>{
 

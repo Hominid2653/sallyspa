@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const phone = "254712858543";
+  const phone = "+254743852667";
 
   /* FAB button */
 
